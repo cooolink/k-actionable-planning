@@ -1,0 +1,3 @@
+interface:
+  display_name: "k-actionable-planning"
+  short_description: "整体理解需求，形成简洁、可信、可执行的方案，检查一致性与交付质量"
