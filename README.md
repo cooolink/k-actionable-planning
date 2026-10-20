@@ -1,5 +1,7 @@
 # k-actionable-planning
 
+[![校验](https://github.com/cooolink/k-actionable-planning/actions/workflows/validate.yml/badge.svg)](https://github.com/cooolink/k-actionable-planning/actions/workflows/validate.yml) · [版本与更新](CHANGELOG.md) · [MIT License](LICENSE)
+
 面向 AI 助手的策划协作 Skill：理解完整需求，以事实和资源为依据，把方案写到能执行，并在交付前检查整体一致性。
 
 重点是讲清楚、做得到，减少逐句打补丁、空泛概念和冗长的 AI 式表达。
@@ -25,7 +27,7 @@
 
 完整规则见 [SKILL.md](SKILL.md)。
 
-## 安装
+## 快速开始
 
 需要本机已安装 Git，并有支持 `SKILL.md` 的助手环境。
 
@@ -38,17 +40,19 @@ git clone https://github.com/cooolink/k-actionable-planning.git \
   "${CODEX_HOME:-$HOME/.codex}/skills/k-actionable-planning"
 ```
 
-如果目标目录已存在，先检查已有内容，不直接覆盖。本仓库也可以先克隆到其他位置，再将整个目录安装到助手的 Skills 路径。
+如果目标目录已存在，先检查已有内容，不直接覆盖。手动复制安装的目录没有 Git 历史，不能直接执行下面的更新命令；可先备份，再按克隆方式重新安装。
+
+当前发布版为 `v1.0.0`；需要固定版本时，在克隆命令中加入 `--branch v1.0.0`。固定标签安装适合保持规则稳定，跟随 `main` 安装适合获取后续更新。
 
 ### 更新
 
-通过上述 Git 克隆方式安装后，可执行：
+跟随 `main` 分支安装后，可执行：
 
 ```bash
 git -C "${CODEX_HOME:-$HOME/.codex}/skills/k-actionable-planning" pull --ff-only
 ```
 
-存在本地修改或分支分歧时，先检查差异，不强制覆盖。
+存在本地修改或分支分歧时，先检查差异，不强制覆盖。固定标签安装不使用此命令；更新到其他发布版时先运行 `git fetch --tags`，再切换到目标标签。
 
 ## 使用
 
@@ -81,20 +85,25 @@ Skill 不扩大任务授权。是否修改文件、同步其他版本或执行�
 
 这是一条判断路径，不要求每一步都向用户确认。信息充分时继续推进；缺少会影响决策的关键信息时再问。
 
-## 文件结构
+## 仓库结构
 
-```text
-k-actionable-planning/
-├── README.md           # 安装、使用及维护说明
-├── SKILL.md            # 助手读取的规则正文
-└── agents/
-    └── openai.yaml     # Codex 展示名称与简介
-```
+| 路径 | 用途 |
+| --- | --- |
+| [SKILL.md](SKILL.md) | 助手读取的规则，包含名称、描述、许可证和版本 |
+| [agents/openai.yaml](agents/openai.yaml) | Codex 展示名称与简介 |
+| [CHANGELOG.md](CHANGELOG.md) | 版本变化 |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | 提交问题、修改规则及验证方法 |
+| [scripts/validate.py](scripts/validate.py) | 元数据、版本及本地文档链接检查 |
+| [.github/workflows/validate.yml](.github/workflows/validate.yml) | 推送和 PR 自动校验 |
 
-本 Skill 无运行脚本或第三方运行依赖。是否调用文件、检索或其他工具，由实际任务决定。
+## 校验与维护
 
-## 维护
+使用 Skill 无需安装 Python 依赖。修改仓库时，Python 校验工具需要 [requirements-dev.txt](requirements-dev.txt) 中的开发依赖；安装与执行方法见 [贡献指南](CONTRIBUTING.md)。
 
-通过 Issue 报告问题，或提交 Pull Request。建议附上触发问题的请求、实际表现与期望结果，并删除个人信息和敏感资料。
+自动校验检查文件、元数据和链接，不判断策划质量。规则变更还需结合实际请求检查行为。
 
-修改规则时保持适用范围清楚，不把个别案例扩展成普遍禁令；行为规则维护在 `SKILL.md`，本说明只保留使用信息。
+问题反馈请提交 [Issue](https://github.com/cooolink/k-actionable-planning/issues/new/choose)。发布与变更见 [更新记录](CHANGELOG.md)。
+
+## 许可证
+
+采用 [MIT License](LICENSE)，允许修改、分发和商用，须保留版权及许可声明。

@@ -1,6 +1,9 @@
 ---
 name: k-actionable-planning
 description: 编写、修订和审核可执行的策划方案。理解完整背景，尊重已确认要求，以事实和资源为依据，写清内容、操作、分工及节点，并检查整体一致性。
+license: MIT
+metadata:
+  version: "1.0.0"
 ---
 
 # 落地策划与整体协作
