@@ -1,109 +1,110 @@
 # k-actionable-planning
 
-[![校验](https://github.com/cooolink/k-actionable-planning/actions/workflows/validate.yml/badge.svg)](https://github.com/cooolink/k-actionable-planning/actions/workflows/validate.yml) · [版本与更新](CHANGELOG.md) · [MIT License](LICENSE)
+**落地策划与整体协作**
 
-面向 AI 助手的策划协作 Skill：理解完整需求，以事实和资源为依据，把方案写到能执行，并在交付前检查整体一致性。
+让 AI 先理解完整需求，再把方案写清楚：做什么、在哪里做、谁负责、如何推进。适用于方案编写、修订与审核。
 
-重点是讲清楚、做得到，减少逐句打补丁、空泛概念和冗长的 AI 式表达。
+[![校验](https://github.com/cooolink/k-actionable-planning/actions/workflows/validate.yml/badge.svg)](https://github.com/cooolink/k-actionable-planning/actions/workflows/validate.yml)
+[版本](https://github.com/cooolink/k-actionable-planning/releases/latest) · [MIT License](LICENSE) · [完整规则](SKILL.md)
 
-## 适用场景
+[安装](#安装) · [使用](#使用) · [具体示例](#具体示例) · [更新](#更新) · [参与维护](#参与维护)
 
-- 编写活动、传播、内容运营或项目执行方案。
-- 修订已有方案，保留已确认设置，处理前后冲突。
-- 审核方案是否有依据、能看懂、能执行。
+## 安装
 
-它提供工作方法，不绑定具体行业、项目、模板、渠道数量或章节结构，也不代替专业领域的事实核验。
-
-## 核心规则
-
-| 方面 | 要求 |
-| --- | --- |
-| 背景 | 先读相关会话、资料和现有方案，再判断与修改 |
-| 依据 | 区分事实、用户决定、建议和待确认事项，不凭空编造 |
-| 协作 | 整体推进；举例不视为穷举，补充不擅自变成范围上限 |
-| 执行 | 写清做什么、在哪里做、用户怎么操作、谁负责及何时完成 |
-| 表达 | 结论在前，保留必要信息，删除空话、重复和术语包装 |
-| 交付 | 检查全文关联与实际呈现，如实说明完成和验证范围 |
-
-完整规则见 [SKILL.md](SKILL.md)。
-
-## 快速开始
-
-需要本机已安装 Git，并有支持 `SKILL.md` 的助手环境。
-
-### Codex
-
-将仓库克隆到个人 Skills 目录：
+在终端执行以下命令，将 Skill 安装到 Codex 个人目录。需要已安装 Git。
 
 ```bash
 git clone https://github.com/cooolink/k-actionable-planning.git \
   "${CODEX_HOME:-$HOME/.codex}/skills/k-actionable-planning"
 ```
 
-如果目标目录已存在，先检查已有内容，不直接覆盖。手动复制安装的目录没有 Git 历史，不能直接执行下面的更新命令；可先备份，再按克隆方式重新安装。
+目标目录已存在时先检查内容，避免覆盖。安装后在下一轮对话中使用 `$k-actionable-planning` 调用。
 
-当前发布版为 `v1.0.0`；需要固定版本时，在克隆命令中加入 `--branch v1.0.0`。固定标签安装适合保持规则稳定，跟随 `main` 安装适合获取后续更新。
+## 使用
 
-### 更新
+提供方案或资料，并说明当前要讨论、审核还是直接修改。
 
-跟随 `main` 分支安装后，可执行：
+**写方案**
+
+```text
+使用 $k-actionable-planning，根据这些资料编写执行方案。
+先理解目标、受众和资源；写清内容、渠道、操作、分工与节点。
+关键条件拿不准时先问，表达简洁。
+```
+
+**改方案**
+
+```text
+使用 $k-actionable-planning，通读并修改这份方案。
+保留已确认设置，处理全文同类问题和前后冲突，不只修改我指出的位置。
+直接更新正文。
+```
+
+**先审核**
+
+```text
+使用 $k-actionable-planning，检查这份方案是否有依据、看得懂、做得到。
+列出具体问题和修改建议，先不修改文件。
+```
+
+## 具体示例
+
+下面是说明写法的示例，不是实际活动结果。
+
+> **只有概念**：通过多渠道传播增强互动，形成传播闭环。
+>
+> **写到操作**：运营在活动前一周发布报名说明，附报名表链接；用户提交后收到确认，运营每个工作日处理疑问。活动结束后整理共性问题，发布答复并通知报名用户。
+
+实际方案应根据资源确定渠道、时间和负责人，不能把示例直接当成既定安排。
+
+## 它如何处理需求
+
+| 情况 | 处理方式 |
+| --- | --- |
+| 用户补充要求 | 结合原目标整合，保留此前有效决定 |
+| 用户给出示例或主要渠道 | 用于理解方向，不自动视为完整清单或范围上限 |
+| 发现一处问题 | 检查同类问题及前后关联，整体修订 |
+| 缺少关键依据 | 核实或询问，不编造事实、数据和功能 |
+| 信息已充分 | 直接推进，不机械分段确认 |
+| 交付 | 检查内容及实际呈现，简短说明结果与待定项 |
+
+Skill 提供协作规则，不绑定固定模板，也不自动授权修改文件或对外发布。完整要求见 [SKILL.md](SKILL.md)。
+
+## 更新
+
+通过上面的克隆命令安装后，更新 `main` 分支：
 
 ```bash
 git -C "${CODEX_HOME:-$HOME/.codex}/skills/k-actionable-planning" pull --ff-only
 ```
 
-存在本地修改或分支分歧时，先检查差异，不强制覆盖。固定标签安装不使用此命令；更新到其他发布版时先运行 `git fetch --tags`，再切换到目标标签。
+本地有修改时先检查差异。手动复制安装的目录没有 Git 历史，需要备份后重新克隆。
 
-## 使用
+<details>
+<summary>固定版本安装</summary>
 
-在 Codex 对话中显式调用，并提供相关资料、目标和约束：
+需要保持规则稳定时，使用已发布标签，例如：
 
-```text
-使用 $k-actionable-planning 修订这份方案。
-先阅读正文和相关讨论，保留已确认设置，检查逻辑与执行路径。
-表达简洁，必要处举例，直接更新正文。
+```bash
+git clone --branch v1.0.1 https://github.com/cooolink/k-actionable-planning.git \
+  "${CODEX_HOME:-$HOME/.codex}/skills/k-actionable-planning"
 ```
 
-只审核、不修改时：
+标签安装不跟随 `main` 更新。切换版本前先获取标签，并检查本地修改：
 
-```text
-使用 $k-actionable-planning 审核这份方案，暂不修改文件。
-指出有依据的问题、对执行的影响，以及具体修改建议。
+```bash
+git -C "${CODEX_HOME:-$HOME/.codex}/skills/k-actionable-planning" fetch --tags
 ```
 
-先讨论时：
+查看 [发布版本](https://github.com/cooolink/k-actionable-planning/releases)，再在该目录中执行 `git switch --detach <目标标签>`。
 
-```text
-使用 $k-actionable-planning 梳理需求和可行方向，先给我确认，不创建文件。
-```
+</details>
 
-Skill 不扩大任务授权。是否修改文件、同步其他版本或执行发布，仍以当前任务要求为准。
+## 参与维护
 
-## 工作方式
+- 使用问题或改进建议：[提交 Issue](https://github.com/cooolink/k-actionable-planning/issues/new/choose)。
+- 修改规则与运行校验：[贡献指南](CONTRIBUTING.md)。
+- 版本变化：[更新记录](CHANGELOG.md)。
+- 授权：采用 [MIT License](LICENSE)。
 
-理解背景与约束 → 明确问题和目标 → 判断可行路径 → 写清操作与责任 → 检查全文及交付。
-
-这是一条判断路径，不要求每一步都向用户确认。信息充分时继续推进；缺少会影响决策的关键信息时再问。
-
-## 仓库结构
-
-| 路径 | 用途 |
-| --- | --- |
-| [SKILL.md](SKILL.md) | 助手读取的规则，包含名称、描述、许可证和版本 |
-| [agents/openai.yaml](agents/openai.yaml) | Codex 展示名称与简介 |
-| [CHANGELOG.md](CHANGELOG.md) | 版本变化 |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | 提交问题、修改规则及验证方法 |
-| [scripts/validate.py](scripts/validate.py) | 元数据、版本及本地文档链接检查 |
-| [.github/workflows/validate.yml](.github/workflows/validate.yml) | 推送和 PR 自动校验 |
-
-## 校验与维护
-
-使用 Skill 无需安装 Python 依赖。修改仓库时，Python 校验工具需要 [requirements-dev.txt](requirements-dev.txt) 中的开发依赖；安装与执行方法见 [贡献指南](CONTRIBUTING.md)。
-
-自动校验检查文件、元数据和链接，不判断策划质量。规则变更还需结合实际请求检查行为。
-
-问题反馈请提交 [Issue](https://github.com/cooolink/k-actionable-planning/issues/new/choose)。发布与变更见 [更新记录](CHANGELOG.md)。
-
-## 许可证
-
-采用 [MIT License](LICENSE)，允许修改、分发和商用，须保留版权及许可声明。
+使用 Skill 无需 Python 依赖。维护工具只检查元数据、版本和文档链接，不能代替实际使用验证。
